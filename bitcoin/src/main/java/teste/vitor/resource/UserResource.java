@@ -2,6 +2,7 @@ package teste.vitor.resource;
 
 import teste.vitor.model.User;
 
+import javax.annotation.security.PermitAll;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -12,9 +13,11 @@ import javax.ws.rs.core.MediaType;
 public class UserResource {
 
     @POST
+    @PermitAll
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public void insert(User user){
+        User.insert(user);
         User.persist(user);
     }
 
