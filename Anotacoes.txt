@@ -1,0 +1,42 @@
+
+Tempo de EXECUCAO - 3 MODOS
+Normal    -  3.828 | 3.666
+Jar       -  2.568 | 2.355
+Bin(exec) -  0.197 | 0.171
+
+Comandos importantes
+
+--------------------------QUARKUS ----------------------------------
+
+EXTENSAO - ADD
+
+./mvnw quarkus:add-extension -Dextensions="hibernate-validator"
+
+
+EXECUCAO
+
+Normal(DEV)
+.\mvnw compile quarkus:dev
+ Apenas executar ->.\mvnw quarkus:dev
+
+Gerar Jar
+.\mvnw clean package
+jar fica em -> target/quarkus-app/quarkus-run.jar
+
+Gerar Bin(exec)
+cmd /c 'call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" && .\mvnw package -Pnative'
+.exe fica em -> target/code-with-quarkus-1.0.0-SNAPSHOT-runner.exe
+
+
+-------------------------- DOCKER -----------------------------------
+
+Postgres
+docker run -d -p 5434:5432 --rm -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=hibernate_orm_test -v /c/Users/Vitor/Documents/Quarkus/LearningQuarkus/containers/db_postgres/data:/var/lib/postgresql/data --name postgres-container postgres-image
+
+Mysql
+docker run -d -p 3306:3306 --rm -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bitcoin -v /c/Users/Vitor/Documents/Quarkus/LearningQuarkus/containers/mysql/data:/var/lib/mysql --name mysql-container mysql
+
+docker run
+docker ps
+docker run
+docker ps
