@@ -49,4 +49,20 @@ public class Order { // Pattern Repository, classe menos sobrecarreda, funcoes b
     public Long getUserId() {
         return userId;
     }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

@@ -7,6 +7,7 @@ import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Entity
@@ -56,6 +57,7 @@ public class User extends PanacheEntityBase {//Active record - controverso - cla
         return username;
     }
 
+    @JsonbTransient
     public String getPassword() {
         return password;
     }
@@ -64,9 +66,14 @@ public class User extends PanacheEntityBase {//Active record - controverso - cla
         return role;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static void insert(User user){
         user.password = BcryptUtil.bcryptHash(user.password);
         user.role = validateUsername(user.username);
+        user.persist();
     }
 
     private static String validateUsername(String username){

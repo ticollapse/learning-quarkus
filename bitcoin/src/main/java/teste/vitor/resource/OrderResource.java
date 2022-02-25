@@ -28,5 +28,12 @@ public class OrderResource {
         orderService.inserir(securityContext, order);
     }
 
+    @GET
+    @RolesAllowed("admin")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Order> list(){
+        return orderService.list();
+    }
+
 
 }

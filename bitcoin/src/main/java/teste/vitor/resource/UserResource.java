@@ -3,11 +3,11 @@ package teste.vitor.resource;
 import teste.vitor.model.User;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/usuarios")
 public class UserResource {
@@ -18,7 +18,13 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void insert(User user){
         User.insert(user);
-        User.persist(user);
+    }
+
+    @GET
+    @RolesAllowed("admin")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> list(){
+        return User.listAll();
     }
 
 }
